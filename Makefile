@@ -1,36 +1,28 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vly <marvin@42.fr>                         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/16 21:11:15 by vly               #+#    #+#              #
-#    Updated: 2022/09/26 20:33:37 by vly              ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-NAME =		server.c
-			client.c
-CC =		gcc
-CFLAGS =	-Werror -Wextra -Wall			
-INC =		libft/libft.a
+NAME = minitalk
+SERVER = server
+CLIENT = client
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+INC = libft/libft.a
+SERVER_SRCS = server.c
+CLIENT_SRCS = client.c
 
 all: $(NAME)
 
 $(NAME):
-			@make -C libft
-			$(CC) $(CFLAGS) -o server server.c
-			$(CC) $(CFLAGS) -o client client.c
+	@make -C libft
+	$(CC) $(CFLAGS) $(INC) $(SERVER_SRCS) -o $(SERVER)
+	$(CC) $(CFLAGS) $(INC) $(CLIENT_SRCS) -o $(CLIENT)
 
 clean:
-			@make clean -C libft
-			rm -f server client
+	@make clean -C libft
+	rm -rf $(SERVER)
+	rm -rf $(CLIENT)
 
 fclean:
-			@make fclean -C libft
-			rm -f server client
+	@make fclean -C libft
+	rm -rf $(SERVER)
+	rm -rf $(CLIENT)
 
-re:			fclean all
-
-.PHONY: 	re all clean fclean
+re: fclean all

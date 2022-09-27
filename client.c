@@ -14,34 +14,7 @@
 #include <signal.h>
 #include <sys/time.h>
 #include <stdlib.h>
-#include <libft.a>
-
-int	ft_atoi(char *s)
-{
-	int	a;
-	int	b;
-	int	c;
-
-	a = 0;
-	b = 1;
-	c = 0;
-	while ((s[a] >= 'a' && s[a] <= 'z') || (s[a] >= 'A' && s[a] <= 'Z'))
-		a++;
-	while ((s[a] >= '\t' && s[a] <= '\r') || s[a] == ' ')
-		a++;
-	if (s[a] == '-' || s[a] == '+')
-	{
-		if (s[a] == '-')
-			b *= -1;
-		a++;
-	}
-	while (s[a] >= '0' && s[a] <= '9')
-	{
-		c = (c * 10) + (s[a] - 48);
-		a++;
-	}	
-	return (c * b);
-}
+#include "./libft/libft.h"
 
 void	send_bits(int pid, unsigned char c)
 {
@@ -81,7 +54,7 @@ int	main(int argc, char *argv[])
 	pid = ft_atoi(argv[1]);
 	if (argc != 3)
 	{
-		write(1, "expect: ./client + pid + string\n", 32);
+		write(1, "wrong number of arguments\n", 26);
 		return (0);
 	}
 	i = 0;
