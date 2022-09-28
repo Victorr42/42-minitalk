@@ -61,9 +61,7 @@ int	main()
 
 	act.sa_sigaction = myfunc;
 	act.sa_flags = SA_SIGINFO;
-	write(1, "Server PID is: ", 14);
-	ft_putnbr_fd(getpid(),1);
-	write(1, "\n", 1);
+	printf("Server PID is: %d\n", getpid());
 	while (1)
 	{
 		sigaction(SIGUSR1, &act, NULL);

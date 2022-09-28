@@ -38,7 +38,7 @@ void	handler(int signum, siginfo_t *siginfo, void *none)
 	(void)none;
 	if (signum == SIGUSR1)
 	{
-		write(1, "\nserver: I got your message!\n", 29);
+		printf("message was receieved\n");
 	}
 }
 
@@ -54,13 +54,13 @@ int	main(int argc, char *argv[])
 	pid = ft_atoi(argv[1]);
 	if (argc != 3)
 	{
-		write(1, "wrong number of arguments\n", 26);
+		printf("wrong number of arguments entered\n");
 		return (0);
 	}
 	i = 0;
 	while (argv[2][i] != '\0')
 		send_bits(pid, argv[2][i++]);
 	send_bits(pid, '\n');
-	write(1, "\nMessage sent from:\n", 19);
+	printf("\nMessage sent from:\n");
 	return (0);
 }
